@@ -1,4 +1,55 @@
-modi
+ démarrage adb (android debug bridge) en wifi
+ en console:
+
+ Step 1.
+ Connect you'r Android device to you'r computer and have USB debugging enabled. Also you have to have added the Android tools to you'r path or else you have to go to the SDK folder first. Open up you'r terminal/cmd and type:
+
+     adb tcpip 5555
+
+     This should give the output:
+
+        - restarting in TCP mode port: 5555
+
+
+	You have now enabled ADB over TCP/IP using the port 5555 (use another port if that one is taken)
+
+	Step 2.
+	Now knowing the IP of you'r Android device (Settings->About->Status) type the following into the terminal:
+
+	  -  adb connect <you'r devices IP adress>
+
+	  [Android : paramétres -> à propos de l'appareil -> etat -> Adresse IP]
+
+	  you should now get the output:
+
+	      connected to <you'r devices IP adress>
+
+	      Step 3.
+	      You should now be able to debug against you'r device as usual as long as it is connected to the same WiFi as you'r computer. A simple test:
+
+	          adb devices
+
+		  Should give the output:
+
+		      List of devices attached:
+		          <you'r devices IP adress>    device
+
+			  Or something similar.
+
+			  --------------------------------------------
+			  http://stackoverflow.com/questions/14358882/connecting-adb-using-wifi-for-non-rooted-device
+
+			  I firstly connected my Android4.0.3 based device via USB and set the TCP/IP port to 5555
+
+			  $ adb tcpip 5555
+
+			  After that I disconnected USB connection and connected to device via WiFi IP and it worked.
+
+			  $ adb kill-server
+			  $ adb connect 192.168.2.5 
+			  * daemon not running. starting it now on port 5037 *
+			  * daemon started successfully *
+			  connected to 192.168.2.5:5555
 
 
 
